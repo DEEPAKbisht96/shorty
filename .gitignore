@@ -1,0 +1,49 @@
+
+# dependencies
+shorty/node_modules
+shorty/.pnp
+shorty/.pnp.*
+shorty/.yarn/*
+shorty/!.yarn/patches
+shorty/!.yarn/plugins
+shorty/!.yarn/releases
+shorty/!.yarn/versions
+
+# testing
+shorty/coverage
+
+# next.js
+shorty/.next/
+shorty/out/
+
+# production
+shorty/build
+
+# misc
+shorty/.DS_Store
+shorty/*.pem
+
+# debug
+shorty/npm-debug.log*
+shorty/yarn-debug.log*
+shorty/yarn-error.log*
+shorty/.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+shorty/.env*
+
+# vercel
+shorty/.vercel
+
+# typescript
+shorty/*.tsbuildinfo
+shorty/next-env.d.ts
+
+idea.md
+
+# backend
+shorty-backend-nodejs/node_modules/
+shorty-backend-nodejs/logs/
+shorty-backend-nodejs/.env
+shorty-backend-nodejs/prisma/migrations/
+shorty-backend-nodejs/src/generated/
