@@ -18,7 +18,7 @@ const DashboardSidebar = () => {
             alert("dash board sidebar")
             router.push("/auth/login");
         }
-    }, [isLoggedIn, router]);
+    }, [isLoggedIn, router, hasHydrated]);
 
     const { data, isLoading, error } = useGetUrlsQuery({ enabled: isLoggedIn });
 

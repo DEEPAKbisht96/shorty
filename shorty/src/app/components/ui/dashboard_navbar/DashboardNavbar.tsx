@@ -16,7 +16,7 @@ const DashboardNavbar = () => {
             alert("dashboard navbar")
             router.replace("/auth/login");
         }
-    }, [isLoggedIn, router]);
+    }, [isLoggedIn, router, hasHydrated]);
 
     return (
         <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200 bg-white">
