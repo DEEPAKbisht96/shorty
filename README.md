@@ -37,11 +37,47 @@ Gotcha! Here’s the **Preview** section with a dummy placeholder image:
 
 ---
 
+Sure! Here's your updated **Preview** section with headings, subheadings, and a slight border style added to each image using Markdown with inline HTML for styling (since Markdown itself doesn’t support borders on images):
+
+---
+
 ## Preview
 
-#### Shorty in Action
 
-![Shorty URL Shortener Dashboard Preview](https://via.placeholder.com/800x400.png?text=Shorty+URL+Shortener+Dashboard+Preview)
+#### Home Page
+
+*Clean and simple URL shortening interface.*
+
+<div style="border:1px solid #ddd; padding:4px; display:inline-block; margin-bottom: 20px;">
+  <img src="https://raw.githubusercontent.com/DEEPAKbisht96/shorty/refs/heads/main/preview/home.png" alt="Shorty Website Home Page" width="800" />
+</div>
+
+
+#### Features
+
+*Explore the powerful features of Shorty at a glance.*
+
+<div style="border:1px solid #ddd; padding:4px; display:inline-block; margin-bottom: 20px;">
+  <img src="https://raw.githubusercontent.com/DEEPAKbisht96/shorty/refs/heads/main/preview/features.png" alt="Shorty Website Features" width="800" />
+</div>
+
+
+#### Dashboard
+
+*Real-time analytics and URL management dashboard.*
+
+<div style="border:1px solid #ddd; padding:4px; display:inline-block; margin-bottom: 20px;">
+  <img src="https://raw.githubusercontent.com/DEEPAKbisht96/shorty/refs/heads/main/preview/dashboard.png" alt="Shorty Website Dashboard" width="800" />
+</div>
+
+
+#### Advanced URL Controls
+
+*Customize and control your shortened URLs with advanced options.*
+
+<div style="border:1px solid #ddd; padding:4px; display:inline-block; margin-bottom: 20px;">
+  <img src="https://raw.githubusercontent.com/DEEPAKbisht96/shorty/refs/heads/main/preview/advance_options.png" alt="Shorty Website Advance Url Control" width="800" />
+</div>
 
 ---
 
