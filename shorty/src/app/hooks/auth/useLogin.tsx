@@ -1,6 +1,8 @@
 import { LoginData, LoginResponse } from "@/types/auth";
 import { useApiMutation } from "../network/useApiMutation";
 import { LOGIN } from "@/network/endpoints/auth";
+import toast from "react-hot-toast";
+import { ErrorResponse } from "@/types/error_response";
 
 
 export const useLogin = () => {
@@ -16,10 +18,10 @@ export const useLogin = () => {
         method: 'post',
         options: {
             onSuccess: (data) => {
-                console.log('Login successful:', data);
+                toast.success("welcome back");
             },
             onError: (error) => {
-                console.error('Login error:', error);
+                toast.error((error.response?.data as ErrorResponse).error.message);
             },
         },
     });

@@ -10,6 +10,8 @@ import { shortUrlSchema } from "@/app/lib/validation/short_url";
 import { useSubmitUrl } from "@/app/hooks/url_shortener/useSubmitUrl";
 import { ShortUrlData } from "@/types/url";
 import { dateTimeFormatter } from "@/utils/helper/date_time_formater";
+import toast from "react-hot-toast";
+import { QRCodeSVG } from 'qrcode.react';
 
 
 const initialSettings = {
@@ -87,7 +89,8 @@ const UrlShortener = () => {
       shortUrl(urlData, {
         onSuccess: (data) => {
           setShortenedUrl(data.data.short_url);
-          setShortUrlType(data.data.device_type.toUpperCase())
+          setShortUrlType(data.data.device_type.toUpperCase());
+          toast.success("shorter url generated")
         }
       });
       console.log("short url: ", data);
@@ -95,6 +98,7 @@ const UrlShortener = () => {
     } catch (err) {
 
       // TODO: "Failed to shorten URL. Please try again."
+      toast.error("failed to short url, try again")
 
     }
   }, [deviceType, originalUrl, settings, shortenedUrl]);
@@ -301,6 +305,12 @@ const UrlShortener = () => {
               )}
             </div>
           </div>
+
+          {/* qr code for the link  */}
+          <div className="mt-8">
+            <QRCodeSVG value={shortenedUrl} size={256} level="H" />
+          </div>
+
         </div>
       )}
     </div>

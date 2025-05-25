@@ -2,7 +2,7 @@ import { toUserResponse } from "@/api/v1/core/mapper/user.mapper";
 import { AuthType } from "@/generated/prisma";
 import { prisma } from "@/infrastructure/prisma/prisma";
 import { UserData, UserResponse } from "@/types/index";
-import { NotFoundError } from "@/utils/error_handler/ErrorStatus";
+import { ConflictError } from "@/utils/error_handler/ErrorStatus";
 
 export const saveUserService = async (user: UserData): Promise<UserResponse> => {
     try {
@@ -14,7 +14,7 @@ export const saveUserService = async (user: UserData): Promise<UserResponse> => 
             }
         });
 
-        if(existingUser != null) throw new NotFoundError("user already exists");
+        if(existingUser != null) throw new ConflictError("user already exists");
 
         const newUser = await prisma.user.create({
             data: {

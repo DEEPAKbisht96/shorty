@@ -4,6 +4,7 @@ import { ExpiryTypeEnum, TimeUnitEnum } from "@/types";
 import { countries } from "@/utils/constants/country_codes";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
+import toast from "react-hot-toast";
 import { FaGlobe, FaTimes, FaLink } from "react-icons/fa";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
@@ -79,6 +80,7 @@ const AdvancedSettings = ({ settings, updateSetting }: AdvancedSettingsProps) =>
       if (data.data.totalUrls <= data.data.urlUsed) {
         updateSetting("analytics", false);
         router.push("/pricing");
+        toast.custom("please upgrade your plan to add analytics")
       }
 
 

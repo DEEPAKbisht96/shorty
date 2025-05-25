@@ -5,8 +5,10 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && tsc --pretty && tsc-alias",
-    "dev": "ts-node-dev --respawn --transpile-only --require tsconfig-paths/register src/server.ts",
-    "start": "node dist/server.js"
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate": "npx prisma migrate deploy",
+    "dev": "npx prisma migrate dev --name auto && npx prisma generate && ts-node-dev --respawn --transpile-only --require tsconfig-paths/register src/server.ts",
+    "start": "npm run prisma:generate && npm run prisma:migrate && node dist/server.js"
   },
   "keywords": [],
   "author": "",

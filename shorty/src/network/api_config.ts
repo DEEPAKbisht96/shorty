@@ -13,7 +13,7 @@ const onRefreshed = (token: string) => {
 };
 
 const api = axios.create({
-    baseURL: 'http://localhost:8000/api/v1',
+    baseURL: `${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/api/v1`,
     withCredentials: true,
 });
 
@@ -22,23 +22,34 @@ api.interceptors.response.use(
     async (error: AxiosError) => {
         const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
 
-        if (error.response?.status === 403 && !originalRequest._retry) {
+        if (error.response?.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
 
             if (!isRefreshing) {
                 isRefreshing = true;
 
                 try {
-                    const res = await axios.post('/api/auth/refresh', {}, { withCredentials: true });
+                    const res = await api.get('/auth/refresh', {
+                        withCredentials: true,
+                    });
                     const newToken = res.data.token;
 
                     api.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
                     onRefreshed(newToken);
-                } catch (refreshError) {
+                } catch (refreshError: any) {
+                    console.log("Error refreshing the token...", refreshError);
+
+                    // Handle 403 - Invalid Refresh Token
+                    if (refreshError.response?.status === 403) {
+                        window.location.href = '/auth/logout';
+                        return;
+                    }
+
                     return Promise.reject(refreshError);
                 } finally {
                     isRefreshing = false;
                 }
+
             }
 
             return new Promise(resolve => {
