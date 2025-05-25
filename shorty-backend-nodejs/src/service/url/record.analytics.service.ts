@@ -1,5 +1,5 @@
 import { analyticDeviceTypeMap, browserMap, operatingSystemMap } from "@/api/v1/core/mapper/global.mapper";
-import { AnalyticDeviceType, BrowserEnum, OperatingSystemEnum } from "@/generated/prisma";
+import { AnalyticDeviceType, BrowserEnum, OperatingSystemEnum } from "@prisma/client";
 import { prisma } from "@/infrastructure/prisma/prisma";
 import geoip from "geoip-lite";
 import { UAParser } from "ua-parser-js";

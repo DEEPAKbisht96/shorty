@@ -1,6 +1,6 @@
 import { deviceTypeMap, expireTypeMap, expireUnitMap } from "@/api/v1/core/mapper/global.mapper";
 import { toUrlResponse } from "@/api/v1/core/mapper/url.mapper";
-import { ExpireType, ExpireUnit } from "@/generated/prisma";
+import { ExpireType, ExpireUnit } from "@prisma/client";
 import { prisma } from "@/infrastructure/prisma/prisma";
 import { UrlCreateData } from "@/types/url";
 import { BadRequestError } from "@/utils/error_handler/ErrorStatus";

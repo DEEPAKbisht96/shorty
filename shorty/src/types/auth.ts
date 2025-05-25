@@ -5,10 +5,11 @@ export interface SignupData {
 }
 
 
+// @ts-ignore
 export interface SignupResponse {
     success: boolean,
     message: string;
-    data: any
+    data: unknown
 }
 
 export interface LoginData {
@@ -17,8 +18,10 @@ export interface LoginData {
 }
 
 
+
+// @ts-ignore
 export interface LoginResponse {
     success: boolean,
     message: string;
-    data: any
+    data: unknown
 }

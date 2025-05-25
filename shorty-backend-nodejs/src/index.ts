@@ -9,10 +9,10 @@ import router_v1 from "@api_v1/routes/index.routes";
 import { softAuthMiddleware } from "./middleware/soft_auth_middleware";
 import { getUrlController } from "./api/v1/controllers/url/get.controller";
 import cookieParser from "cookie-parser";
-import { CreatePricing } from "./types/pricing";
-import { createPricingService } from "./service/pricing/create.service";
-import { prisma } from "./infrastructure/prisma/prisma";
-import { countries } from "./utils/constants/country_code";
+// import { CreatePricing } from "./types/pricing";
+// import { createPricingService } from "./service/pricing/create.service";
+// import { prisma } from "./infrastructure/prisma/prisma";
+// import { countries } from "./utils/constants/country_code";
 
 dotenv.config();
 
@@ -34,7 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // const pricingData: CreatePricing = {
-// 	userId: "4e842c13-2a4c-4f30-a498-c1ac8e9982d1",
+// 	userId: "1fb586ec-9a78-4aef-851d-acd4e6161346",
 // 	totalUrls: 5,
 // 	isActive: true
 // };

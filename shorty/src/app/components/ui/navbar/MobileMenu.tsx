@@ -6,7 +6,7 @@ import { FaChartLine, FaUserCircle } from "react-icons/fa";
 
 const MobileMenu = () => {
 
-    const [isClient, setIsClient] = useState(false);
+    const [isClient] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
 
     return (

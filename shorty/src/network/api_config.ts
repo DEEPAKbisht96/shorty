@@ -36,7 +36,8 @@ api.interceptors.response.use(
 
                     api.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
                     onRefreshed(newToken);
-                } catch (refreshError: any) {
+                    // @ts-ignore
+                } catch (refreshError: AxiosError) {
                     console.log("Error refreshing the token...", refreshError);
 
                     // Handle 403 - Invalid Refresh Token

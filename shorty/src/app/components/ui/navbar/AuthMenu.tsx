@@ -8,7 +8,7 @@ import { FiExternalLink } from 'react-icons/fi'
 
 const AuthMenu = () => {
 
-    const { user, isLoggedIn, logout } = useUserStore();
+    const { isLoggedIn, logout } = useUserStore();
 
     return (
         <div className="flex space-x-4 ml-4">

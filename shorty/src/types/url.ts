@@ -15,6 +15,7 @@ export type ShortUrlData = {
 export type ShortUrlResponse = {
     success: boolean;
     message: string;
+    // @ts-ignore
     data: any
 }
 

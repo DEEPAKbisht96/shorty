@@ -3,6 +3,7 @@ import { useApiMutation } from "../network/useApiMutation";
 import { LOGIN } from "@/network/endpoints/auth";
 import toast from "react-hot-toast";
 import { ErrorResponse } from "@/types/error_response";
+import { AxiosError } from "axios";
 
 
 export const useLogin = () => {
@@ -17,10 +18,10 @@ export const useLogin = () => {
         url: LOGIN,
         method: 'post',
         options: {
-            onSuccess: (data) => {
+            onSuccess: () => {
                 toast.success("welcome back");
             },
-            onError: (error) => {
+            onError: (error: AxiosError) => {
                 toast.error((error.response?.data as ErrorResponse).error.message);
             },
         },

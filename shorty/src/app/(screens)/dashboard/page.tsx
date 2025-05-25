@@ -16,6 +16,11 @@ const DashboardAnalytics = ({ searchParams }: DashboardAnalyticsProps) => {
   const params = use(searchParams);
   const id = params.id as string;
 
+  const { data, isLoading, error } = useGetAnalyticsQuery({
+    id: id ?? "",
+    enabled: Boolean(id),
+  });
+
   if (!id) {
     return (
       <div className="w-full text-center py-12 text-gray-600 text-lg">
@@ -23,11 +28,6 @@ const DashboardAnalytics = ({ searchParams }: DashboardAnalyticsProps) => {
       </div>
     );
   }
-
-  const { data, isLoading, error } = useGetAnalyticsQuery({
-    id,
-    enabled: true,
-  });
 
   if (isLoading) {
     return (

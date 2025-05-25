@@ -5,7 +5,7 @@ import { countries } from "@/utils/constants/country_codes";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import toast from "react-hot-toast";
-import { FaGlobe, FaTimes, FaLink } from "react-icons/fa";
+import { FaGlobe, FaTimes } from "react-icons/fa";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 interface Settings {
@@ -57,7 +57,7 @@ const AdvancedSettings = ({ settings, updateSetting }: AdvancedSettingsProps) =>
     updateSetting("analytics", false);
   };
 
-  const { data, error, isLoading } = useUrlCountQuery({
+  const { data, isLoading } = useUrlCountQuery({
     enabled: typeof settings.analytics === 'boolean' && settings.analytics,
   });
 
@@ -65,6 +65,8 @@ const AdvancedSettings = ({ settings, updateSetting }: AdvancedSettingsProps) =>
 
 
   const handleAddAnalytics = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    
     try {
 
       // check if user is logged in or not.

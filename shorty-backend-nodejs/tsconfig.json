@@ -45,6 +45,9 @@
             ],
             "@api_v1/*": [
                 "api/v1/*"
+            ],
+            "@generated/*": [
+                "generated/*"
             ]
         }
     },

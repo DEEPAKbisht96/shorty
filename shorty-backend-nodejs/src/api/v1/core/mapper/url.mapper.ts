@@ -1,6 +1,6 @@
 // api/v1/core/mapper/url.mapper.ts
 
-import { Country, Url, UrlCountryRestriction } from "@/generated/prisma";
+import { Country, Url, UrlCountryRestriction } from "@prisma/client";
 import { UrlResponse } from "@/types/url";
 
 type UrlWithRelations = Url & {

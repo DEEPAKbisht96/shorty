@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 
-const logout = () => {
+const Logout = () => {
 
     const { logout } = useUserStore();
     const router = useRouter();
@@ -19,4 +19,4 @@ const logout = () => {
     )
 }
 
-export default logout
+export default Logout

@@ -1,4 +1,3 @@
-import { DeviceType } from "./urlshortener";
 
 export type UrlAnalyticsResponse = {
     success: boolean,

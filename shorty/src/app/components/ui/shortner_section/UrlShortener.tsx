@@ -95,19 +95,22 @@ const UrlShortener = () => {
       });
       console.log("short url: ", data);
 
-    } catch (err) {
+    } catch (error) {
+
+      console.log(error);
+      
 
       // TODO: "Failed to shorten URL. Please try again."
       toast.error("failed to short url, try again")
 
     }
-  }, [deviceType, originalUrl, settings, shortenedUrl]);
+  }, [deviceType, originalUrl, settings, data, shortUrl, validate]);
 
   const updateSetting = useCallback(
     <K extends keyof typeof settings>(key: K, value: (typeof settings)[K]) => {
       setSettings((prev) => ({ ...prev, [key]: value }));
     },
-    [settings]
+    []
   );
 
   return (

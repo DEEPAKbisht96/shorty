@@ -21,8 +21,8 @@ export default function LoginPage() {
   })
 
   //login validation
-  const { validate, errors } = useValidation(loginSchema);
-  const { login, error, isPending } = useLogin();
+  const { validate } = useValidation(loginSchema);
+  const { login, isPending } = useLogin();
   const router = useRouter();
 
   const { login: updateStoreLogin } = useUserStore();
@@ -41,7 +41,7 @@ export default function LoginPage() {
 
     console.log("Login data: ", loginData);
     login(loginData, {
-      onSuccess: (data) => {
+      onSuccess: (data: any) => {
         if (!data?.data) return;
         const userData = {
           id: data.data.id,
@@ -128,7 +128,7 @@ export default function LoginPage() {
 
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <Link
                 href="/auth/signup"
                 className="font-medium text-blue-600 hover:text-blue-500"

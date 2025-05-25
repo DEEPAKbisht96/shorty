@@ -11,7 +11,7 @@ import { useUserStore } from '@/state/store/auth.store';
 import { SignupData } from '@/types/auth';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 
 export default function SignupPage() {
@@ -25,11 +25,11 @@ export default function SignupPage() {
   const router = useRouter();
 
   // validation
-  const { validate, errors } = useValidation(signupSchema);
+  const { validate } = useValidation(signupSchema);
 
   const { login: updateStoreLogin } = useUserStore();
 
-  const { signup, error, isPending, isError } = useSignup();
+  const { signup, isPending } = useSignup();
 
   const handleGoogleLogin = () => {
     // Implement Google login logic
@@ -51,7 +51,7 @@ export default function SignupPage() {
 
     signup(signupData,
       {
-        onSuccess: (data) => {
+        onSuccess: (data: any) => {
           if (!data?.data) return;
           const userData = {
             id: data.data.id,

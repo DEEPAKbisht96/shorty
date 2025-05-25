@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FiCopy, FiTrash2, FiClock, FiCalendar } from 'react-icons/fi';
+import { FiTrash2, FiClock, FiCalendar } from 'react-icons/fi';
 
 type UrlHeaderProps = {
     longUrl: string;
@@ -10,9 +10,9 @@ type UrlHeaderProps = {
 };
 
 export const UrlHeader = ({ longUrl, shortUrl, createdAt, expiresAt, onDelete }: UrlHeaderProps) => {
-    const copyToClipboard = () => {
-        navigator.clipboard.writeText(shortUrl);
-    };
+    // const copyToClipboard = () => {
+    //     navigator.clipboard.writeText(shortUrl);
+    // };
 
     return (
         <div className="bg-white rounded-lg shadow p-6 mb-6">

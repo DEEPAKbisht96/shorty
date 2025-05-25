@@ -18,7 +18,7 @@ export const useSignup = () => {
         url: SIGNUP,
         method: 'post',
         options: {
-            onSuccess: (data) => {
+            onSuccess: () => {
                 toast.success("registered successfully")
             },
             onError: (error: AxiosError) => {

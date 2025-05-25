@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ZodSchema, ZodError } from 'zod';
+import { ZodSchema } from 'zod';
 
 export function useValidation<T>(schema: ZodSchema<T>) {
   const [errors, setErrors] = useState<Partial<Record<keyof T, string[]>>>({});

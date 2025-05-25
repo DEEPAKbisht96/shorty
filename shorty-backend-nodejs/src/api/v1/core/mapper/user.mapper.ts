@@ -1,4 +1,4 @@
-import { User } from "@/generated/prisma";
+import { User } from "@prisma/client";
 import { UserResponse } from "@/types";
 
 export const toUserResponse = (user: User): UserResponse => {

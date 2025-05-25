@@ -47,6 +47,7 @@ const PricingPage = () => {
         name: "URL Analytics",
         description: `${urlCount} URL${urlCount !== 1 ? 's' : ''} Plan`,
         order_id: data.id,
+        // @ts-ignore
         handler: function (response: any) {
           alert("Payment Successful!");
           console.log(response);
@@ -60,10 +61,16 @@ const PricingPage = () => {
         },
       };
 
+      // @ts-ignore
       const razorpay = new (window as any).Razorpay(options);
       razorpay.open();
-    } catch (error: any) {
-      console.error("Order creation failed", error);
+
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Order creation failed", error.message);
+      } else {
+        console.error("Order creation failed", error);
+      }
       alert("Something went wrong. Please try again.");
     }
   };
@@ -119,7 +126,7 @@ const PricingPage = () => {
             </div>
 
             <div className="mb-10">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">What's included:</h3>
+              <h3 className="text-lg font-medium text-gray-900 mb-4">What&apos;s included:</h3>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {features.map((feature, index) => (
                   <li key={index} className="flex items-center">

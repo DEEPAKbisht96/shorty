@@ -6,14 +6,19 @@ import { formatDistanceToNow } from "date-fns";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { FaLink } from "react-icons/fa";
 
 const DashboardSidebar = () => {
-    const { isLoggedIn } = useUserStore();
+    const { isLoggedIn, hasHydrated } = useUserStore();
     const router = useRouter();
 
     useEffect(() => {
-        if (!isLoggedIn) router.push("/auth/login");
-    }, []);
+        if (!hasHydrated) return;
+        if (isLoggedIn == false) {
+            alert("dash board sidebar")
+            router.push("/auth/login");
+        }
+    }, [isLoggedIn, router]);
 
     const { data, isLoading, error } = useGetUrlsQuery({ enabled: isLoggedIn });
 
@@ -24,7 +29,7 @@ const DashboardSidebar = () => {
             {/* Header */}
             <div className="p-6 flex flex-col items-center border-b border-gray-200">
                 <div className="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 font-bold text-xl">
-                    LOGO
+                    <FaLink className="h-6 w-6 text-indigo-600" />
                 </div>
             </div>
 
@@ -37,6 +42,8 @@ const DashboardSidebar = () => {
                 ) : urls.length === 0 ? (
                     <div className="text-sm text-gray-400">No links found.</div>
                 ) : (
+
+                    // @ts-ignore
                     urls.map((item: any) => (
                         <Link
                             key={item.id}

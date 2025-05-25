@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { FaChartLine, FaLock, FaLink, FaUsers, FaMagic, FaMobile, FaQrcode } from 'react-icons/fa';
+import { FaChartLine, FaLock, FaLink,FaQrcode } from 'react-icons/fa';
 import { MdTimer } from "react-icons/md";
 
 type FeatureCardProps = {

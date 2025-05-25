@@ -58,8 +58,8 @@ export type UrlResponse = {
     created_at: string;
     updated_at: string;
     is_expired: boolean;
-    expire_type: string;
-    expire_unit: string;
+    expire_type: string | null;
+    expire_unit: string | null;
     is_analytics: boolean;
     expire_clicks: number | null;
     expire_at: string | null;

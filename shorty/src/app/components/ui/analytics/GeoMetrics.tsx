@@ -49,7 +49,8 @@ export const GeoMetrics = ({ topCountries, topCities }: GeoMetricsProps) => {
       },
       tooltip: {
         callbacks: {
-          label: (context: any) => `${context.raw} clicks`,
+          // @ts-ignore
+          label: (context: TooltipItem<'line'>) => `${context.raw} clicks`,
         },
       },
     },

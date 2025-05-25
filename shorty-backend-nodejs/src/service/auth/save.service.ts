@@ -1,5 +1,5 @@
 import { toUserResponse } from "@/api/v1/core/mapper/user.mapper";
-import { AuthType } from "@/generated/prisma";
+import { AuthType } from "@prisma/client";
 import { prisma } from "@/infrastructure/prisma/prisma";
 import { UserData, UserResponse } from "@/types/index";
 import { ConflictError } from "@/utils/error_handler/ErrorStatus";

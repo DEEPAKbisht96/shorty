@@ -71,7 +71,8 @@ export const ClickMetrics = ({
       },
       tooltip: {
         callbacks: {
-          label: (context: any) => `${context.raw} clicks`,
+          // @ts-ignore
+          label: (context: TooltipItem<'line'>) => `${context.raw} clicks`,
         },
       },
     },

@@ -7,11 +7,13 @@ import { useEffect } from "react";
 
 const DashboardNavbar = () => {
 
-    const { user, isLoggedIn } = useUserStore();
+    const { user, isLoggedIn, hasHydrated } = useUserStore();
     const router = useRouter();
 
     useEffect(() => {
-        if (!isLoggedIn) {
+        if (!hasHydrated) return;
+        if (isLoggedIn == false) {
+            alert("dashboard navbar")
             router.replace("/auth/login");
         }
     }, [isLoggedIn, router]);

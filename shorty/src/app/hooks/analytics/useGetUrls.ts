@@ -7,6 +7,8 @@ export function useGetUrlsQuery({
     key?: readonly unknown[];
     enabled?: boolean;
 }) {
+
+    // @ts-ignore
     return useApiQuery<{ message: string, success: boolean, data: any }>({
         key,
         url: `/analytic`,

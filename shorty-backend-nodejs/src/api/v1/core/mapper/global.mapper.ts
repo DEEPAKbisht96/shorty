@@ -1,4 +1,4 @@
-import { AnalyticDeviceType, BrowserEnum, DeviceType, ExpireType, ExpireUnit, OperatingSystemEnum, PaymentStatus } from '@/generated/prisma';
+import { AnalyticDeviceType, BrowserEnum, DeviceType, ExpireType, ExpireUnit, OperatingSystemEnum, PaymentStatus } from '@prisma/client';
 
 export const deviceTypeMap: Record<string, DeviceType> = {
   both: DeviceType.both,

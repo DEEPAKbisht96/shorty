@@ -3,7 +3,6 @@ import { useApiQuery } from '../network/useApiQuery';
 
 export function useGetAnalyticsQuery({
     id,
-    key = ["url analytics"],
     enabled = false,
 }: {
     id: string

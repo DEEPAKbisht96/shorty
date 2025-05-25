@@ -1,10 +1,8 @@
 import Link from "next/link";
 import {
   FaLink,
-  FaUserCircle,
   FaChartLine,
 } from "react-icons/fa";
-import { FiExternalLink } from "react-icons/fi";
 import MobileMenu from "./MobileMenu";
 import MobileMenuButton from "./MobileMenuButton";
 import AuthMenu from "./AuthMenu";

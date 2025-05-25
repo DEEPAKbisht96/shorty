@@ -1,4 +1,4 @@
-import { Pricing } from "@/generated/prisma";
+import { Pricing } from "@prisma/client";
 import { PricingResponse } from "@/types/pricing";
 
 export const toPricingResponse = (price: Pricing): PricingResponse => {

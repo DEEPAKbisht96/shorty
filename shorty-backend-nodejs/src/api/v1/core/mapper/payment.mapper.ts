@@ -1,4 +1,4 @@
-import { Payment } from "@/generated/prisma";
+import { Payment } from "@prisma/client";
 import { PaymentResponse } from "@/types/payment";
 
 export const toPaymentResponse = (payment: Payment): PaymentResponse => {

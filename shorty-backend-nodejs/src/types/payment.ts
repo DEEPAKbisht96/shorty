@@ -1,4 +1,4 @@
-import { PaymentStatus } from "@/generated/prisma";
+import { PaymentStatus } from "@prisma/client";
 
 export type CreatePayment = {
     userId: string;

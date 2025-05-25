@@ -1,5 +1,5 @@
 import { toPaymentResponse } from "@/api/v1/core/mapper/payment.mapper";
-import { PaymentStatus } from "@/generated/prisma";
+import { PaymentStatus } from "@prisma/client";
 import { prisma } from "@/infrastructure/prisma/prisma";
 import { PaymentResponse } from "@/types/payment";
 

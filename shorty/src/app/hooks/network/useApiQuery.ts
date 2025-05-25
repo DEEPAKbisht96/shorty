@@ -11,7 +11,7 @@ type ApiQueryOptions<TData, TError = AxiosError> = Omit<
 interface UseApiQueryProps<TData> {
   key: QueryKey;
   url: string;
-  params?: Record<string, any>;
+  params?: Record<string, unknown>;
   headers?: Record<string, string>;
   options?: ApiQueryOptions<TData>;
   enabled?: boolean;
