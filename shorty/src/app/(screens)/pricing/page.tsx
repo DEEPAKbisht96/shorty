@@ -1,12 +1,12 @@
 "use client";
 
-import api from '@/network/api_config';
 import { useState } from 'react';
-import { FiCheck, FiArrowRight } from 'react-icons/fi';
+import { FiCheck } from 'react-icons/fi';
+import RazorpayButton from '@/app/components/ui/payment/RazorPayButton';
 
 const PricingPage = () => {
   const [urlCount, setUrlCount] = useState(1);
-  const pricePerUrl = 1;
+  const pricePerUrl = 50;
   const totalPrice = urlCount * pricePerUrl;
 
   const features = [
@@ -14,66 +14,7 @@ const PricingPage = () => {
     "Geographic data (country/city)",
     "Device & browser breakdown",
     "Custom dashboard for each URL",
-    "API access to your data",
-    "Email support",
   ];
-
-  const loadRazorpayScript = () =>
-    new Promise((resolve) => {
-      const script = document.createElement("script");
-      script.src = "https://checkout.razorpay.com/v1/checkout.js";
-      script.onload = () => resolve(true);
-      script.onerror = () => resolve(false);
-      document.body.appendChild(script);
-    });
-
-  const handlePayment = async () => {
-    const res = await loadRazorpayScript();
-    if (!res) {
-      alert("Failed to load Razorpay SDK");
-      return;
-    }
-
-    try {
-      const { data } = await api.post('/payment/create-order', {
-        amount: totalPrice,
-        currency: 'INR',
-      });
-
-      const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
-        amount: data.amount,
-        currency: data.currency,
-        name: "URL Analytics",
-        description: `${urlCount} URL${urlCount !== 1 ? 's' : ''} Plan`,
-        order_id: data.id,
-        // @ts-ignore
-        handler: function (response: any) {
-          alert("Payment Successful!");
-          console.log(response);
-        },
-        prefill: {
-          name: "Demo User",
-          email: "user@example.com",
-        },
-        theme: {
-          color: "#2563eb",
-        },
-      };
-
-      // @ts-ignore
-      const razorpay = new (window as any).Razorpay(options);
-      razorpay.open();
-
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error("Order creation failed", error.message);
-      } else {
-        console.error("Order creation failed", error);
-      }
-      alert("Something went wrong. Please try again.");
-    }
-  };
 
 
   return (
@@ -81,9 +22,8 @@ const PricingPage = () => {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Simple, Transparent Pricing</h1>
-          <p className="text-xl text-gray-600">
-            Pay only for what you need. $1 per URL for comprehensive analytics.
-          </p>
+          <p className="text-xl text-gray-600">Pay only for what you need. ₹{pricePerUrl} per URL.</p>
+
         </div>
 
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
@@ -93,13 +33,12 @@ const PricingPage = () => {
                 <h2 className="text-2xl font-bold text-gray-900">URL Analytics</h2>
                 <p className="text-gray-600 mt-2">Track clicks, locations, devices, and more</p>
               </div>
-
               <div className="mt-6 md:mt-0">
                 <div className="flex items-center">
-                  <span className="text-5xl font-bold text-blue-600">${totalPrice}</span>
+                  <span className="text-5xl font-bold text-blue-600">₹{totalPrice}</span>
                   <span className="ml-2 text-gray-500">/ month</span>
                 </div>
-                <p className="text-sm text-gray-500 mt-1">Billed monthly, cancel anytime</p>
+                <p className="text-sm text-gray-500 mt-1">Billed monthly</p>
               </div>
             </div>
 
@@ -137,19 +76,17 @@ const PricingPage = () => {
               </ul>
             </div>
 
-            <button
-              onClick={handlePayment}
-              className="w-full flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-lg transition duration-200"
-            >
-              Get Started
-              <FiArrowRight className="ml-2" />
-            </button>
+            <RazorpayButton
+              amount={totalPrice}
+              description={`${urlCount} URL${urlCount !== 1 ? 's' : ''} Plan`}
+              urlCount={urlCount}
+            />
           </div>
 
           <div className="bg-gray-50 px-8 py-6 text-center">
             <p className="text-gray-600">
               Need more than 100 URLs?{' '}
-              <a href="#" className="text-blue-600 hover:text-blue-800 font-medium">
+              <a href="/contact" className="text-blue-600 hover:text-blue-800 font-medium">
                 Contact us for enterprise pricing
               </a>
             </p>

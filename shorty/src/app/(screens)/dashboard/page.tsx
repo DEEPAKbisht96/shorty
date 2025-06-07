@@ -7,6 +7,7 @@ import { GeoMetrics } from "@/app/components/ui/analytics/GeoMetrics";
 import { UrlHeader } from "@/app/components/ui/analytics/UrlHeader";
 import { useGetAnalyticsQuery } from "@/app/hooks/analytics/useGetAnalytics";
 import { dateTimeFormatter } from "@/utils/helper/date_time_formater";
+import { useDeleteUrl } from "@/app/hooks/url/useDelete";
 
 type DashboardAnalyticsProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -20,6 +21,8 @@ const DashboardAnalytics = ({ searchParams }: DashboardAnalyticsProps) => {
     id: id ?? "",
     enabled: Boolean(id),
   });
+
+  const { deleteUrl, isPending } = useDeleteUrl();
 
   if (!id) {
     return (
@@ -70,8 +73,8 @@ const DashboardAnalytics = ({ searchParams }: DashboardAnalyticsProps) => {
     })
   );
 
-  const handleDelete = () => {
-    // You may want to add a confirmation modal here.
+  const handleDelete = (id: string) => {
+    deleteUrl(id);
     console.log("Delete clicked");
   };
 
@@ -82,7 +85,7 @@ const DashboardAnalytics = ({ searchParams }: DashboardAnalyticsProps) => {
         shortUrl={`http://localhost:8000/${urlInfo.code}`}
         createdAt={new Date(urlInfo.createdAt)}
         expiresAt={expires}
-        onDelete={handleDelete}
+        onDelete={()=> handleDelete(id)}
       />
 
       <ClickMetrics

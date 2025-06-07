@@ -5,6 +5,8 @@ import { createUrlSchema } from "../lib/validator/url/create_url_data_schema";
 import { softAuthMiddleware } from "@/middleware/soft_auth_middleware";
 import { createUrlController } from "../controllers/url/create.controller";
 import { getUrlController } from "../controllers/url/get.controller";
+import { authMiddleware } from "@/middleware/auth.middleware";
+import { deleteUrlController } from "../controllers/url/delete.controller";
 
 
 const urlRoutes = Router();
@@ -41,6 +43,17 @@ urlRoutes.get(
     "/:code",
     softAuthMiddleware,
     getUrlController
+)
+
+
+/** Delete the url
+ * Delete -/ - 
+ * @param id: string
+ */
+urlRoutes.delete(
+    "/:id",
+    authMiddleware,
+    deleteUrlController
 )
 
 export default urlRoutes;

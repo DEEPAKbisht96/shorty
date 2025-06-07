@@ -167,7 +167,7 @@ model UserClicks {
 
 model Pricing {
   id     String @id @default(uuid())
-  userId String @map("user_id")
+  userId String @unique @map("user_id")
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   totalUrls Int     @default(0) @map("total_urls")

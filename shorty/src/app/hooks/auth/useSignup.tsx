@@ -15,8 +15,10 @@ export const useSignup = () => {
         error,
         reset,
     } = useApiMutation<SignupResponse, SignupData>({
-        url: SIGNUP,
-        method: 'post',
+        getRequestConfig: () => ({
+            url: SIGNUP,
+            method: 'post',
+        }),
         options: {
             onSuccess: () => {
                 toast.success("registered successfully")

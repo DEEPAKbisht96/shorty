@@ -6,7 +6,8 @@ import crypto from "crypto";
 import { updatePaymentService } from "@/service/payment/update.service";
 import { paymentMapper } from "../../core/mapper/global.mapper";
 import { CreatePricing } from "@/types/pricing";
-import { createPricingService } from "@/service/pricing/create.service";
+import { getUrlUsedCountService } from "@/service/analytics/get_url_used.service";
+import { updatePricingService } from "@/service/pricing/update.service";
 
 export const verifyOrderController = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -27,16 +28,17 @@ export const verifyOrderController = async (req: Request, res: Response, next: N
 
         if (isAuthentic) {
 
+            const payment = await getUrlUsedCountService(authUser.id);
             const paymentData = await updatePaymentService(paymentMapper['success'], payment_id);
 
             const total_urls = paymentData.amount / 5000;
 
             const pricingData: CreatePricing = {
                 userId: authUser.id,
-                totalUrls: total_urls,
+                totalUrls: payment.totalUrls + total_urls,
                 isActive: true
             }
-            await createPricingService(pricingData);
+            await updatePricingService(pricingData);
 
             const response = new SuccessResponse({
                 message: "Order verified",

@@ -27,13 +27,21 @@ export const createOrderController = async (req: Request, res: Response, next: N
             status: paymentMapper["pending"]
         }
 
-        await createPaymentService(paymentData);
+        console.log("payment data: ", paymentData);        
+
+        const payment = await createPaymentService(paymentData);
 
         const response = new SuccessResponse({
-            data: order,
+            data: {
+                ...order,
+                paymentId: payment.id
+            },
             message: "Order Created",
             statusCode: 201
         });
+
+        console.log("response: ", response);
+        
 
         res.status(201).json(response);
 

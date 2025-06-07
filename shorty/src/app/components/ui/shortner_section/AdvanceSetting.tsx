@@ -65,32 +65,31 @@ const AdvancedSettings = ({ settings, updateSetting }: AdvancedSettingsProps) =>
 
 
   const handleAddAnalytics = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault()
-    
     try {
+      const newAnalyticsState = e.target.checked;
 
-      // check if user is logged in or not.
       if (!isLoggedIn) {
         router.push("/auth/login");
+        return;
       }
 
-      // update the analytics
-      updateSetting("analytics", !settings.analytics);
-
-      // check how many urls are available / total
-      if (!data?.data) return;
-      if (data.data.totalUrls <= data.data.urlUsed) {
-        updateSetting("analytics", false);
-        router.push("/pricing");
-        toast.custom("please upgrade your plan to add analytics")
+      // If enabling analytics, check limits
+      if (newAnalyticsState && data?.data) {
+        if (data.data.totalUrls <= data.data.urlUsed) {
+          toast.error("Please upgrade your plan to add analytics");
+          router.push("/pricing");
+          return;
+        }
       }
 
+      // Update the setting if all checks pass
+      updateSetting("analytics", newAnalyticsState);
 
     } catch (error) {
-      console.log(error);
-
+      console.error("Error toggling analytics:", error);
+      toast.error("Failed to update analytics settings");
     }
-  }, [settings.analytics, isLoggedIn, data, router, updateSetting]);
+  }, [isLoggedIn, data, router, updateSetting]);
 
   return (
     <div className="mt-6">

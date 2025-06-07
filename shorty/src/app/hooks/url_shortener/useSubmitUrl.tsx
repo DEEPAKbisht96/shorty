@@ -12,8 +12,10 @@ export const useSubmitUrl = () => {
         error,
         reset,
     } = useApiMutation<ShortUrlResponse, ShortUrlData>({
-        url: SHORT_URL,
-        method: 'post',
+        getRequestConfig: () => ({
+            url: SHORT_URL,
+            method: 'post',
+        }),
         options: {
             onSuccess: (data) => {
                 console.log('url shortened successful:', data);

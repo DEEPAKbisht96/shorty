@@ -11,7 +11,7 @@ export const createOrderService = async ({ amount, currency, receipt }: CreateOr
     try {
 
         const order = await razorpay.orders.create({
-            amount: amount * 100,
+            amount: amount,
             currency,
             receipt,
         });

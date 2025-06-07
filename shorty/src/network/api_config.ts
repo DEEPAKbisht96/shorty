@@ -32,22 +32,31 @@ api.interceptors.response.use(
                     const res = await api.get('/auth/refresh', {
                         withCredentials: true,
                     });
+
+                    console.log("response of refresh token.", res);
+                    
                     const newToken = res.data.token;
 
                     api.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
                     onRefreshed(newToken);
                     // @ts-ignore
-                } catch (refreshError: AxiosError) {
-                    console.log("Error refreshing the token...", refreshError);
+                } catch (refreshError: unknown) {
+                    console.error("Error refreshing the token...", refreshError);
 
-                    // Handle 403 - Invalid Refresh Token
-                    if (refreshError.response?.status === 403) {
+                    // Extract status code safely
+                    const status = (refreshError as AxiosError)?.response?.status;
+
+                    if (status === 403 || status === 401) {
+                        // Invalid or expired refresh token
+                        await new Promise(resolve => setTimeout(resolve, 50));
                         window.location.href = '/auth/logout';
-                        return;
                     }
 
                     return Promise.reject(refreshError);
+
                 } finally {
+                    console.log("finally");
+                    
                     isRefreshing = false;
                 }
 
